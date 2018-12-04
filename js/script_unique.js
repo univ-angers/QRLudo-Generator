@@ -1,40 +1,22 @@
 /**
  * @Author: alassane
  * @Date:   2018-11-10T17:59:11+01:00
- * @Last modified by:   alassaneloadImage
- * @Last modified time: 2018-11-16T00:51:32+01:00
+ * @Last modified by:   alassane
+ * @Last modified time: 2018-12-04T14:56:50+01:00
  */
 
 // fichier script concernant les qr codes uniques
 
-// const path = new require('path');
-// const root = path.dirname(require.main.filename); // project home path
+var qrcode;
+var qrType;
 
-/*const {
-  FacadeController
-} = require(`${root}/Controller/FacadeController`);
-*/
-const {
-  QRCodeUnique
-} = require(`${root}/Model/QRCodeJson`);
-
-const{
-QRCodeXL
-} = require(`${root}/Model/QRCodeJson`);
-
-let qrcode;
-let qrType;
-
-
-$(document).ready(function(){
+$(document).ready(function() {
   var settings = require("electron-settings");
 
-  if(settings.has("defaultColor")){
+  if (settings.has("defaultColor")) {
     $("#qrColor").val(settings.get("defaultColor"));
   }
 });
-
-
 
 // trigger preview qrcode action
 $('#preview').click(e => {
@@ -50,17 +32,16 @@ $('#preview').click(e => {
     let qrData = [];
 
     for (data of $('.qrData')) {
-      if(data.name == 'AudioName'){
+      if (data.name == 'AudioName') {
         let dataAudio = {
-                      type: 'music',
-                      url: data.id,
-                      name: data.value
-                    }
+          type: 'music',
+          url: data.id,
+          name: data.value
+        }
 
         let jsonAudio = JSON.stringify(dataAudio);
         qrData.push(JSON.parse(jsonAudio));
-      }
-      else
+      } else
         qrData.push($(data).val());
 
     }
@@ -84,15 +65,15 @@ function validateForm(inputArray) {
   initMessages();
   for (input of inputArray) {
     // eliminer les input de type file
-    if($(input).attr('type') != 'file'){
+    if ($(input).attr('type') != 'file') {
       if (!$(input).val() || $(input).val() == "") {
-        messageInfos("Veuillez renseigner tous les champs","danger");//message a afficher en haut de la page
+        messageInfos("Veuillez renseigner tous les champs", "danger"); //message a afficher en haut de la page
         return false;
       }
-    }else{
-        //enlever l'element input de type file
-        inputArray.splice(index,1);
-        }
+    } else {
+      //enlever l'element input de type file
+      inputArray.splice(index, 1);
+    }
 
     ++index;
   }
@@ -105,7 +86,7 @@ function validateForm(inputArray) {
 function previewQRCode(name, data, color, div) {
 
   // instanciate a qrcode unique object
-  if(qrType == 'xl')
+  if (qrType == 'xl')
     qrcode = new QRCodeXL(name, data, color);
   else
     qrcode = new QRCodeUnique(name, data, color);
@@ -129,8 +110,8 @@ function saveQRCodeImage() {
   console.log(data);
   xhr.open('GET', data, true);
 
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState == xhr.DONE){
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == xhr.DONE) {
       var filesaver = require('file-saver');
       console.log(xhr.response);
       filesaver.saveAs(xhr.response, qrcode.getName() + '.jpeg');

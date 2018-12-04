@@ -2,14 +2,10 @@
  * @Author: alassane
  * @Date:   2018-11-10T17:52:40+01:00
  * @Last modified by:   alassane
- * @Last modified time: 2018-11-10T20:06:25+01:00
+ * @Last modified time: 2018-12-04T14:55:56+01:00
  */
 
 
-
-const {
-  QRCodeUnique
-} = require(`${__dirname}/Model/QRCodeJson`);
 let qr = new QRCodeUnique();
 console.log(qr);
 

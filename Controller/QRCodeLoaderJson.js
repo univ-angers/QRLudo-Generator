@@ -2,7 +2,7 @@
  * @Author: alassane
  * @Date:   2018-11-14T00:46:15+01:00
  * @Last modified by:   alassane
- * @Last modified time: 2018-11-16T16:19:09+01:00
+ * @Last modified time: 2018-12-04T14:36:48+01:00
  */
 
 
@@ -20,12 +20,7 @@ class QRCodeLoaderJson {
 
     // `onload` as listener
     fileReader.addEventListener('load', function(ev) {
-      const path = require('path');
-      const piexif = require('piexifjs');
-
-      let root = path.dirname(require.main.filename);
       let data = ev.target.result;
-
 
       //On récupère les données exif de l'image
       let exifObj = piexif.load(data);
@@ -42,23 +37,14 @@ class QRCodeLoaderJson {
 
       switch (JSON.parse(qrcodeString).type) {
         case "unique":
-          const {
-            QRCodeUnique
-          } = require(`${root}/Model/QRCodeJson`);
           qrcode = new QRCodeUnique(qr.name, qr.data, qr.color);
           break;
 
         case "xl":
-          const {
-            QRCodeXL
-          } = require(`${root}/Model/QRCodeJson`);
           qrcode = new QRCodeXL(qr.name, qr.data, qr.color);
           break;
 
         case "ensemble":
-          const {
-            QRCodeEnsemble
-          } = require(`${root}/Model/QRCodeEnsembleJson`);
           qrcode = new QRCodeEnsemble(qr.name, qr.data, qr.color);
           break;
 

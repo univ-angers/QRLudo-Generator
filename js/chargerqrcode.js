@@ -1,9 +1,9 @@
-const path = new require('path');
-const root = path.dirname(require.main.filename); // project home path
+/**
+ * @Date:   2018-12-04T08:24:59+01:00
+ * @Last modified by:   alassane
+ * @Last modified time: 2018-12-04T16:03:32+01:00
+ */
 
-const {
-  FacadeController
-} = require(`${root}/Controller/FacadeController`);
 
 
 $().ready(function() {
@@ -38,14 +38,25 @@ function drawQRCodeImport(qrcode) {
       $('input#qrName').val(qrcode.getName()); //restaurer le nom du qrcode
       // console.log(qrcode.getData(0)[0]);
       console.log(qrcode.getData().entries());
-      for (let [index, value] of qrcode.getData().entries()) {
-        if (typeof value === "string") {
-          ajouterChampLegende();
-          console.log(qrcode.getData(index));
-          $('textarea#testtexxtarea').val(qrcode.getData(index));
-        } else if (typeof value === "object") {
-          ajouterChampSon(qrcode.getData(index).name,qrcode.getData(index).url);
-        }
+      let data = qrcode.getData();
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+      }
+      for (var i = 0; i < data.length; i++) {
+        // data[i]
+        // }
+        // for (let [index, value] of qrcode.getData().entries()) {
+        // if (typeof value === "string") {
+        // if (typeof data[i] === "string") {
+          ajouterChampLegende(data[i]);
+          // console.log(qrcode.getData(index));
+          // $('textarea#testtexxtarea').val(qrcode.getData(index));
+          // $('textarea#testtexxtarea').val(data[i]);
+        // } else if (typeof value === "object") {
+        // } else if (typeof data[i] === "object") {
+          // ajouterChampSon(qrcode.getData(index).name, qrcode.getData(index).url);
+          // ajouterChampSon(data[i].name, data[i].url);
+        // }
         // appelle fonction qui crée un champ dynamiquement
         // à chaque itération tu lui donne data
         // remplir le champ avec data
@@ -53,13 +64,12 @@ function drawQRCodeImport(qrcode) {
     });
   } else if (qrcode.getType() == 'ensemble') {
     $("#charger-page").load("Views/ensemble.html", function() {
-    $('input#qrName').val(qrcode.getName()); //restaurer le nom du qrcodeensemble
+      $('input#qrName').val(qrcode.getName()); //restaurer le nom du qrcodeensemble
 
 
     });
   } else if (qrcode.getType() == 'quesRep') {
-    $("#charger-page").load("Views/quesRep.html", function() {
-    });
+    $("#charger-page").load("Views/quesRep.html", function() {});
   }
 
 }

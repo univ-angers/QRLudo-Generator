@@ -2,7 +2,7 @@
  * @Author: alassane
  * @Date:   2018-11-14T00:45:25+01:00
  * @Last modified by:   alassane
- * @Last modified time: 2018-11-16T16:19:40+01:00
+ * @Last modified time: 2018-12-04T14:33:20+01:00
  */
 
 
@@ -11,20 +11,8 @@
  * Jules Leguy
  * 2017
  **/
-const path = require('path');
-const root = path.dirname(require.main.filename);
-const {
-  DictionnaireXml
-} = require(`${root}/Model/DictionnaireXml`);
-const {
-  QRCodeEnsemble
-} = require(`${root}/Model/QRCodeEnsembleJson`);
-const {
-  QRCodeAtomique
-} = require(`${root}/Model/QRCodeAtomique`);
-const {
-  FacadeController
-} = require(`${root}/Controller/FacadeController`);
+
+
 /*
  * Permet de créer un objet QRCode à partir d'une image QRCode ou d'instancier un tableau contenant les objets QRCodes obtenus à partir d'une image enregistrant une famille de QRCodes
  */
@@ -32,7 +20,6 @@ class QRCodeLoader {
 
   //Renvoie le QRCode crée à partir des informations du fichier image passé en paramètre
   static loadImage(file, callback) {
-
     var qrcode;
     var fileReader = new FileReader();
 
@@ -108,7 +95,6 @@ class QRCodeLoader {
    * Lit le contenu des métadonnées de l'image passée en paramètre et détecte s'il s'agit d'un qrcode ou d'une famille de qrcodes, puis fait l'appel à la sous fonction en conséquence
    */
   static __traiterImage(data) {
-    const piexif = require('piexifjs');
     //On récupère les données exif de l'image
     var exifObj = piexif.load(data);
     var dataUtf8 = exifObj["0th"][700];
@@ -145,9 +131,7 @@ class QRCodeLoader {
    * Crée et renvoie un tableau de qrcodes d'une même famille issus d'une image conteneur famille
    */
   static __creerFamilleQRCodes(xmlNode) {
-
     var listeFamille = new Array();
-
 
     var listeFamilleXml = xmlNode.getElementsByTagName(DictionnaireXml.getTagRacine());
 
@@ -161,8 +145,7 @@ class QRCodeLoader {
 
   //On crée un objet QRCode à partir des données reconstituées
   static __creerQRCode(xmlNode) {
-
-    //On lit le type de QRCode contenu dans l'image
+        //On lit le type de QRCode contenu dans l'image
     var typeQRCode = xmlNode.getElementsByTagName(DictionnaireXml.getTagDonneesUtilisateur())[0].getAttribute(DictionnaireXml.getAttTypeQRCode());
 
     //On vérifie que le xml est bien formé (qu'il possède un noeud donneesUtilisateur et un noeud metadonnees)

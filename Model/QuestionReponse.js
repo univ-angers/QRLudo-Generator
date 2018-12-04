@@ -1,10 +1,8 @@
 /**
- * @Author: alassane
  * @Date:   2018-11-23T11:47:00+01:00
  * @Last modified by:   alassane
- * @Last modified time: 2018-11-23T12:42:12+01:00
+ * @Last modified time: 2018-12-04T14:54:38+01:00
  */
-
 
 
 /**
@@ -243,11 +241,9 @@ class QuesRepController {
 
 }
 
-
-/*
 module.exports = {
   Projet,
   Reponse,
   Question,
   QuesRepController
-};*/
+};

@@ -1,8 +1,7 @@
 /**
- * @Author: alassane
  * @Date:   2018-11-23T11:47:00+01:00
  * @Last modified by:   alassane
- * @Last modified time: 2018-11-23T12:56:20+01:00
+ * @Last modified time: 2018-12-04T15:00:01+01:00
  */
 
 /**
@@ -11,14 +10,6 @@
  */
 
 var fs = require('fs');
-const path = require('path');
-let root = path.dirname(require.main.filename);
-const {
-  FacadeController
-} = require(`${root}/Controller/FacadeController`);
-const {
-  QuestionReponse
-} = require(`${root}/Model/QuestionReponse`);
 
 let quesrepcontroller = new QuesRepController();
 let projet = new Projet();
