@@ -40,7 +40,12 @@ $("#ajouterQuestion").click(function(){
 
 var projet = new Projet();
 
+var compteurReponse = 1;
+//console.log(localStorage.getItem("k"));
+var k = localStorage.getItem("k");
+console.log(k);
 
+//console.log(compteurReponse);
 $(document).ready(function() {
 
   //méthode gérant la continuité
@@ -48,14 +53,14 @@ $(document).ready(function() {
 
   // Ajouter une nouvelle Reponse une fois qu'on va clicker sur la button Ajouterreponse
   $("#ajouterQuestion").click(function () {
-    Ajouternouvellereponse();
+    ajouterNouvelleReponse();
 
   })
 });
 
 //function Ajouter une nouvelle Reponse
-var compteurReponse = 1;
-function Ajouternouvellereponse(reponse){
+
+function ajouterNouvelleReponse(reponse){
   compteurReponse++;
     if (compteurReponse < 30) {
       type = "Rreponse";
@@ -81,6 +86,11 @@ function Ajouternouvellereponse(reponse){
 
       let container = $("#repContainer");
       container.append(reponse);
+      localStorage.setItem("k",compteurReponse);
+
+      //localStorage.setItem(`reponse`+compteurReponse,)
+
+      
     }
 
 }
@@ -89,6 +99,7 @@ function Ajouternouvellereponse(reponse){
 function supprLigne(idLigne, element) {
   if (element == "Rreponse") {
     compteurReponse--;
+    localStorage.setItem("k",compteurReponse);
     $("#divQuestion" + idLigne).on('click', function() {
       $(this).remove();
       for(let cpt = idLigne; cpt <= compteurReponse; cpt++) {
@@ -186,6 +197,7 @@ function viderChamps(){
   deleteStore(`MessageMauvaisereponseQCM`);
 
   deleteStore('MessageBonnereponseQCM');
+  localStorage.setItem("k",1);
 
    compteurReponse = 1; 
 
@@ -264,24 +276,23 @@ function enregistrement(){
       $("#reposne"+i).val(store.get('reponse'+i));
 
     }
-  }
-
-   for(var i = 1; i<numReponse+1; i++){
-    if(store.get('reponse'+i)){
-
+  }*/
+   for(var i = 1; i<k; i++){
+     /*if(store.get('reponse'+i)){
 
       var new_rep = new QCM(store.get('reponse'+i),store.get('data'+i), store.get('reponseColor'+i)); // cretation d'une nouvelle reponse
       new_rep.setId(store.get('reponseId'+i));
       projet.addReponse(new_rep);
 
-      projet.getQuestion().addReponse(new_rep.getId(), new_rep.getData());
-      addReponseLine(new_rep);
+      projet.getQuestion().addReponse(new_rep.getId(), new_rep.getData());*/
+      console.log('test1');
+      ajouterNouvelleReponse();
 
     }
-  }*/
+  }
 
 
-}
+
 
 
 
