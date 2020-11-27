@@ -58,9 +58,9 @@ $(document).ready(function() {
   })
 });
 
-//function Ajouter une nouvelle Reponse
+//function Ajouter une nouvelle Reponse avec arguments pour la persistance
 
-function ajouterNouvelleReponse(reponse){
+/*function ajouterNouvelleReponse(reponse){
   compteurReponse++;
     if (compteurReponse < 30) {
       type = "Rreponse";
@@ -93,7 +93,7 @@ function ajouterNouvelleReponse(reponse){
       
     }
 
-}
+}*/
 
 function ajouterNouvelleReponse(){
   compteurReponse++;
@@ -130,7 +130,7 @@ function ajouterNouvelleReponse(){
 
 }
 //pour les nouvelles reponse 
-class ReponseVocale {
+/*class ReponseVocale {
     constructor(numeroEnigme, estBonneReponse, textQuestion) {
         this.numeroEnigme = numeroEnigme;
         this.estBonneReponse = estBonneReponse;
@@ -148,7 +148,7 @@ class ReponseVocale {
     getTextQuestion() {
       return this.textQuestion;
     }
-  }
+  }*/
 
 //Pour supprimer une énigme ou bien une réponse dans cette cas c'est reponse dans recvocal
 function supprLigne(idLigne, element) {
@@ -260,43 +260,6 @@ function viderChamps(){
 }
 
 
-
-
-
-
-
-//test1 ---- pour comprendre -----
-/*document.getElementById("Question").value = getSavedValue("Question");    // set the value to this input
-document.getElementById("Bonnereponse").value = getSavedValue("Bonnereponse");   // set the value to this input
-document.getElementById("MessageBonnereponse").value = getSavedValue("MessageBonnereponse");    // set the value to this input
-document.getElementById("MessageMauvaisereponse").value = getSavedValue("MessageMauvaisereponse");   // set the value to this input
-    var checkbox = document.getElementById('checkboxQR');
-    localStorage.setItem('checkboxQR', checkbox.checked); 
-
-function load(){    
-    var checked = JSON.parse(localStorage.getItem('checkboxQR'));
-    document.getElementById("checkboxQR").checked = checked;
-    console.log('zzzz');
-}
-load();
-function saveValue(e){
-         var id = e.id;  
-         var val = e.value; 
-         localStorage.setItem(id, val);
-}
-
-        
-function getSavedValue  (v){
-
-  if (!localStorage.getItem(v)) {
-     return "";
-     }
-     return localStorage.getItem(v);
-}
-*/
-
-
-
 function enregistrement(){
 
   if(store.get(`Question`))
@@ -326,13 +289,13 @@ function enregistrement(){
     $("#reponseinitiale").val(store.get('reponseinitiale'));
 
    for(var i = 1; i<k; i++){
-      var p;
+      /*var p;
       if (store.get('reponse'+i)) {
         p = $("#reponse"+i).val(store.get('reponse'+i));
       }
       var ma_reponse = new ReponseVocale(p[0], p[1], p[2])
-      console.log('test1');
-      ajouterNouvelleReponse(ma_reponse);
+      console.log('test1');*/
+      ajouterNouvelleReponse(/*ma_reponse*/);
 
     }
   }
