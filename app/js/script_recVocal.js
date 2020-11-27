@@ -74,7 +74,7 @@ function ajouterNouvelleReponse(reponse){
                                         <label class="form-check-label" for="gridCheck`+ compteurReponse + `">
                               </div>
                             <div class="form-group col-md-6">
-                                  <input type="text" class="form-control col-sm-6" id="reponse`+ compteurReponse + `" rows="2" name="nomprojet"
+                                  <input type="text" class="form-control col-sm-6" value="`+reponse.getTextQuestion()+`" id="reponse`+ compteurReponse + `" rows="2" name="nomprojet"
                                   placeholder="Réponse" />
                             </div>
                               <div class="form-group col-md-1">
@@ -95,7 +95,62 @@ function ajouterNouvelleReponse(reponse){
 
 }
 
-//Pour supprimer une énigme ou bien une réponse 
+function ajouterNouvelleReponse(){
+  compteurReponse++;
+    if (compteurReponse < 30) {
+      type = "Rreponse";
+      let reponse = document.createElement('div');
+      reponse.innerHTML = `<div class="form-row" id="divQuestion` + compteurReponse + `">
+                              <div class="form-group col-md-3">
+                                    <label class="control-label">Réponse `+ compteurReponse + ` :</label>
+                                  </div>
+                          <div class="form-group col-md-2">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridCheck`+ compteurReponse + `" style="width:70px;" value="option"` + compteurReponse + ` >
+                                        <label class="form-check-label" for="gridCheck`+ compteurReponse + `">
+                              </div>
+                            <div class="form-group col-md-6">
+                                  <input type="text" class="form-control col-sm-6" id="reponse`+ compteurReponse + `" rows="2" name="nomprojet"
+                                  placeholder="Réponse" />
+                            </div>
+                              <div class="form-group col-md-1">
+                                  <button id="deleteQRCode`+ compteurReponse + `" type="button"
+                                      class="btn btn-outline-success align-self-center" onclick="supprLigne(` + compteurReponse + ",\'" + type + `\');">
+                                      <i class="fa fa-trash"></i></button>
+                                      </div>
+                              </div>`;
+
+      let container = $("#repContainer");
+      container.append(reponse);
+      localStorage.setItem("k",compteurReponse);
+
+      //localStorage.setItem(`reponse`+compteurReponse,)
+
+      
+    }
+
+}
+//pour les nouvelles reponse 
+class ReponseVocale {
+    constructor(numeroEnigme, estBonneReponse, textQuestion) {
+        this.numeroEnigme = numeroEnigme;
+        this.estBonneReponse = estBonneReponse;
+        this.textQuestion = textQuestion;
+    }
+
+    getNumeroEnigme() {
+      return this.numeroEnigme;
+    }
+
+    getEstBonneReponse() {
+      return this.estBonneReponse;
+    }
+
+    getTextQuestion() {
+      return this.textQuestion;
+    }
+  }
+
+//Pour supprimer une énigme ou bien une réponse dans cette cas c'est reponse dans recvocal
 function supprLigne(idLigne, element) {
   if (element == "Rreponse") {
     compteurReponse--;
@@ -210,7 +265,7 @@ function viderChamps(){
 
 
 
-//test1
+//test1 ---- pour comprendre -----
 /*document.getElementById("Question").value = getSavedValue("Question");    // set the value to this input
 document.getElementById("Bonnereponse").value = getSavedValue("Bonnereponse");   // set the value to this input
 document.getElementById("MessageBonnereponse").value = getSavedValue("MessageBonnereponse");    // set the value to this input
@@ -270,23 +325,14 @@ function enregistrement(){
   if(store.get('reponseinitiale'))
     $("#reponseinitiale").val(store.get('reponseinitiale'));
 
-  /*for(var i = 1; i<compteurReponse+1; i++){
-    if(store.get('reponse'+i)){
-      console.log('zakkk')
-      $("#reposne"+i).val(store.get('reponse'+i));
-
-    }
-  }*/
    for(var i = 1; i<k; i++){
-     /*if(store.get('reponse'+i)){
-
-      var new_rep = new QCM(store.get('reponse'+i),store.get('data'+i), store.get('reponseColor'+i)); // cretation d'une nouvelle reponse
-      new_rep.setId(store.get('reponseId'+i));
-      projet.addReponse(new_rep);
-
-      projet.getQuestion().addReponse(new_rep.getId(), new_rep.getData());*/
+      var p;
+      if (store.get('reponse'+i)) {
+        p = $("#reponse"+i).val(store.get('reponse'+i));
+      }
+      var ma_reponse = new ReponseVocale(p[0], p[1], p[2])
       console.log('test1');
-      ajouterNouvelleReponse();
+      ajouterNouvelleReponse(ma_reponse);
 
     }
   }
