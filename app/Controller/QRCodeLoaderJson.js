@@ -5,8 +5,6 @@
  * @Last modified time: 2018-12-06T18:19:38+01:00
  */
 
-//const QRCodeSeriousGame = require("../Model/QRCodeSeriousGame");
-
 
 /*
  * Permet de créer un objet QRCode à partir d'une image QRCode ou d'instancier un tableau contenant les objets QRCodes obtenus à partir d'une image enregistrant une famille de QRCodes
@@ -65,16 +63,14 @@ class QRCodeLoaderJson {
           qrcode.setId(qr.id);
           break;
 
-        case "ExerciceReconnaissanceVocaleQCM":
-          qrcode = new QRCodeQCM(qr.name, qr.data, qr.lettreReponseVocale, qr.text_bonne_reponse, qr.m_text_mauvaise_rep, qr.color);
-         break;
+        case "questionQCM":
+          qrcode = new QuestionQCM(qr.name, qr.data, qr.color);
+          qrcode.setId(qr.id);
+          break;
 
-        case "ExerciceReconnaissanceVocaleQuestionOuverte":
-          qrcode = new QRCodeQuestionOuverte(qr.name, qr.data, qr.text_bonne_reponse, qr.text_mauvaise_reponse, qr.color);
-        break;
-
-        case "SeriousGameScenario" :
-          qrcode = new QRCodeSeriousGame(qr.name, qr.introduction, qr.fin, qr.enigmes, qr.questionsQrCode, qr.questionRecoVocale, qr.color)
+        case "reponseQCM":
+          qrcode = new ReponseQCM(qr.name, qr.isAnswer, qr.color);
+          qrcode.setId(qr.id);
           break;
 
         default:

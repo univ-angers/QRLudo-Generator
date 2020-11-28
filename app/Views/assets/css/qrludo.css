@@ -274,10 +274,6 @@ label.qrludo {
   padding-top: 10px;
 }
 
-#labelBonneReponse {
-  padding-left: 180px;
-}
-
 .qrludo-QR {
   /* /background:#39ca5a; */
   height: auto;
@@ -493,7 +489,7 @@ input[type="color"]::-webkit-color-swatch {
   .modalMusic, .modalAjoutReponse, .champReponse, .modalAjoutReponseCreerReponse,
   .modalAjoutReponseReponseAjoutee, .importerProjetDialog, .projetImporte,
   .exporterProjetDialog, .modalCharger, .zonemultiple {
-    /*display: none;*/
+    display: none;
   }
 
   #info-multiple>ul>li:nth-child(5)>video {
@@ -501,12 +497,4 @@ input[type="color"]::-webkit-color-swatch {
   }
 }
 
-#containerEnigme {
-  counter-reset: section;
-}
-
-.count:after {
-  counter-increment: section;
-  content: counter(section);
-}
 /*end info*/

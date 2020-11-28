@@ -7,9 +7,8 @@
     <nav class="nav nav-tabs">
       <a class="nav-item nav-link" id="unique-info" href="#info-unique">Unique</a>
       <a class="nav-item nav-link" id="multiple-info" href="#info-multiple">Multiple</a>
-      <a class="nav-item nav-link" id="exo-qrcode-info" href="#info-exercice-qrcode">Exercice - QR Code</a>
-      <a class="nav-item nav-link" id="exo-reco-vocale-info" href="#info-exercice-reco-vocale">Exercice - Reco vocale</a>
-      <a class="nav-item nav-link" id="serious-game-info" href="#info-serious-game">Serious Game</a>
+      <a class="nav-item nav-link" id="questRep-info" href="#info-exercice">Exercice</a>
+      <a class="nav-item nav-link" id="qcm-info" href="#info-QCM">QCM</a>
       <a class="nav-item nav-link" id="music-info" href="#info-MusicInput">Musique</a>
       <a class="nav-item nav-link" id="import-info" href="#info-Import">Import</a>
     </nav>
@@ -21,6 +20,17 @@
         <h5><a href="#affichageVideoUnique">Vidéo explicative</a></h5>
         <div id="affichageVideoUnique" class="info-content">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/9VIE4R7dDs4" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="info-QCM">
+        <h5>Comment utiliser les QR QCM ?</h5>
+        <hr>
+
+        <h5><a href="#affichageVideoQCM">Vidéo explicative</a></h5>
+        <div id="affichageVideoQCM" class="info-content">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/NQzfOvANMo4" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
@@ -169,8 +179,9 @@
         </div>
       </div>
 
-      <div class="tab-pane" id="info-exercice-qrcode">
-          <h5>Comment utiliser les QR Exercices ?</h5>
+      <div class="tab-pane" id="info-exercice">
+        <div class="tab-pane" id="info-exo">
+          <h5>Comment utiliser les QR Exercice ?</h5>
           <hr>
 
           <h5><a href="#affichageVideoExercice">Vidéo explicative</a></h5>
@@ -178,20 +189,210 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/2PGPMnRpgwE" frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-      </div>
+        </div>
 
-      <div class="tab-pane" id="info-exercice-reco-vocale">
-        <h5>Comment utiliser l'onglet "Exercice - Reco Vocale" ?</h5>
-      </div>
-    
-    
-      <div class="tab-pane" id="info-serious-game">
-        <h5>Comment utiliser l'onglet "Serious Game" ?</h5>
+        <!--   <h5><a href="#ajoutQuestion">Ajouter une question au projet</a></h5>
+        <div id="ajoutQuestion" class="info-content">
+          <ul>
+            <li>
+              Saisissez le texte de votre question dans le champ
+              <img src="./Views/assets/images/infos_questions_reponses/nouvelleQuestion.png" />
+              puis cliquez sur le bouton
+              <img src="./Views/assets/images/infos_questions_reponses/boutonPlus.png" />
+            </li>
+            <li>
+              Une boîte de dialogue apparaît : elle contient votre question et vous permet d'ajouter de nouvelles réponses à votre question <a href="#ajoutReponse" style="padding-left:0px;">(voir Ajouter une réponse à une question/En modifiant
+                directement la réponse).</a>
+            </li>
+            <li>
+              Un nouveau champ apparaît : il contient toutes les informations de la question que vous venez de créer
+              <img src="./Views/assets/images/infos_questions_reponses/nouvelleQuestionChamp.png" />
+            </li>
+          </ul>
+        </div>
+
+        <h5><a href="#ajoutReponse">Ajouter une reponse à une question</a></h5>
+        <div id="ajoutReponse" class="info-content">
+
+          <h6><a href="#ajoutReponseModifQuestion">En modifiant directement la question</a></h6>
+          <div id="ajoutReponseModifQuestion" class='info-content'>
+            <ul>
+              <li>
+                Cliquez sur le bouton
+                <img src="./Views/assets/images/infos_questions_reponses/boutonEditQuestion.png" />
+                de la question que vous voulez modifier.
+              </li>
+              <li>
+                Une boîte de dialogue qui contient les informations de la question apparaît.<br />
+                <img class="modalAjoutReponse" src="./Views/assets/images/infos_questions_reponses/modalAjoutReponse.png" />
+              </li>
+              <li>
+                Dans le champ
+                <img src="./Views/assets/images/infos_questions_reponses/ajoutReponse.png" />
+                , saisissez le texte de votre réponse puis cliquez sur le bouton
+                <img src="./Views/assets/images/infos_questions_reponses/boutonPlus.png" />
+                pour ajouter votre réponse.
+              </li>
+              <li>
+                Votre réponse apparaît et est ajoutée par défaut.<br />
+                <img class="modalAjoutReponseReponseAjoutee" src="./Views/assets/images/infos_questions_reponses/modalAjoutReponseReponseAjoutee.png" />
+              </li>
+              <li>
+                Enfin, cliquez sur le bouton
+                <img src="./Views/assets/images/infos_questions_reponses/boutonValider.png" />
+                pour valider vos modifications.
+              </li>
+              <li>
+                Avec le champ de saisie de texte, vous pouvez modifier le message qui sera lu par la synthèse vocale de QRLudo lorsque cette réponse sera scannée.</br>
+                Par défault, le message est celui indiqué dans les paramètres.
+                <img src="./Views/assets/images/infos_questions_reponses/champCustomMessage.png" />
+              </li>
+              <li>
+                Votre réponse apparaît dans la description de la question.<br />
+                <img src="./Views/assets/images/infos_questions_reponses/champQuestionNouvelleReponse.png" />
+              </li>
+            </ul>
+          </div>
+
+          <h6><a href="#ajoutReponseCreationReponse">En créant une réponse et en l'ajoutant à la question</a></h6>
+          <div id="ajoutReponseCreationReponse" class='info-content'>
+            <ul>
+              <li>
+                Cliquez sur
+                <img src="./Views/assets/images/infos_questions_reponses/boutonMesReponses.png" />
+              </li>
+              <li>
+                Dans le champ
+                <img src="./Views/assets/images/infos_questions_reponses/champNouvelleReponse.png" />,
+                saisissez votre réponse puis validez la en cliquant sur le bouton
+                <img src="./Views/assets/images/infos_questions_reponses/boutonPlus.png" />
+              </li>
+              <li>
+                Votre réponse apparaît
+                <img class="champReponse" src="./Views/assets/images/infos_questions_reponses/champReponse.png" />
+              </li>
+              <li>
+                Cliquez sur
+                <img src="./Views/assets/images/infos_questions_reponses/boutonMonProjet.png" />
+                pour retourner à la page des questions.
+              </li>
+              <li>
+                Cliquez sur le bouton
+                <img src="./Views/assets/images/infos_questions_reponses/boutonEditQuestion.png" />
+                de la question que vous voulez modifier.
+              </li>
+              <li>
+                Une boîte de dialogue apparaît.<br />
+                <img class="modalAjoutReponseCreerReponse" src="./Views/assets/images/infos_questions_reponses/modalAjoutReponseCreerReponse.png" />
+              </li>
+              <li>
+                Cochez la case correspondant à la réponse que vous souhaitez ajouter puis cliquez sur
+                <img src="./Views/assets/images/infos_questions_reponses/boutonValider.png" />
+                pour enregister vos modifications.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h5><a href="#retirerReponse">Retirer une réponse à une question</a></h5>
+        <div id="retirerReponse" class="info-content">
+          <ul>
+            <li>
+              Cliquez sur le bouton
+              <img src="./Views/assets/images/infos_questions_reponses/boutonEditQuestion.png" />
+              qui correspond à question que vous souhaitez modifier.
+            </li>
+            <li>
+              Décochez la case correspondant à la réponse que vous voulez retirer.
+            </li>
+            <li>
+              Cliquez sur
+              <img src="./Views/assets/images/infos_questions_reponses/boutonValider.png" />
+              pour enregister vos modifications.
+            </li>
+          </ul>
+        </div>
+
+        <h5><a href="#modifierQuestion">Modifier une question</a></h5>
+        <div id="modifierQuestion" class="info-content">
+          <ul>
+            <li>
+              Cliquez sur le bouton
+              <img src="./Views/assets/images/infos_questions_reponses/boutonEditQuestion.png" />
+              qui correspond à la question que vous souhaitez modifier.
+            </li>
+            <li>
+              Modifiez l'intitulé de votre question dans le champ
+              <img src="./Views/assets/images/infos_questions_reponses/modifsIntituleQuestion.png" />.
+            </li>
+            <li>
+              Cliquez sur
+              <img src="./Views/assets/images/infos_questions_reponses/boutonValider.png" />
+              pour enregister vos modifications.
+            </li>
+          </ul>
+        </div>
+
+        <h5><a href="#supprimerReponse">Supprimer une réponse du projet</a></h5>
+        <div id="supprimerReponse" class="info-content">
+          <ul>
+            <li>
+              Cliquez sur
+              <img src="./Views/assets/images/infos_questions_reponses/boutonMesReponses.png" />.
+            </li>
+            <li>
+              Cliquez sur le bouton
+              <img src="./Views/assets/images/infos_questions_reponses/boutonSupprimer.png" />
+              de la réponse que vous souhaitez supprimer.
+            </li>
+          </ul>
+        </div>
+
+        <h5><a href="#exporterProjet">Enregistrer un projet</a></h5>
+        <div id="exporterProjet" class="info-content">
+          <ul>
+            <li>
+              Vérifiez que vous avez entré le nom de votre projet
+              <img src="./Views/assets/images/infos_questions_reponses/champNomProjet.png" />
+            </li>
+            <li>
+              Cliquez sur
+              <img src="./Views/assets/images/infos_questions_reponses/boutonExporter.png" />
+            </li>
+            <li>
+              Une boîte de dialogue apparaît : elle vous permet de sélectionner l'endroit où votre projet va être sauvegarder.<br />
+              <img class="exporterProjetDialog" src="./Views/assets/images/infos_questions_reponses/exporterProjetDialog.png" />
+            </li>
+            <li>
+              Un message vous indique que votre projet a bien été enregister.<br />
+              <img src="./Views/assets/images/infos_questions_reponses/alertProjetExporte.png" />
+            </li>
+          </ul>
+        </div>
+
+        <h5><a href="#importerProjet">Importer un projet</a></h5>
+        <div id="importerProjet" class="info-content">
+          <ul>
+            <li>
+              Cliquez sur <img src="./Views/assets/images/infos_questions_reponses/boutonImporter.png" />
+            </li>
+            <li>
+              Sélectionnez le nom du dossier qui contient votre projet.<br />
+              <img class="importerProjetDialog" src="./Views/assets/images/infos_questions_reponses/importerProjetDialog.png" />
+            </li>
+            <li>
+              Tous les éléments de votre projet sont affichés.<br />
+              <img class="projetImporte" src="./Views/assets/images/infos_questions_reponses/projetImporte.png" />
+            </li>
+          </ul>
+        </div> -->
+
       </div>
     </div>
-    <hr>
-  </div>
 
+    <hr>
+
+  </div>
 </div>
 
 
@@ -206,17 +407,9 @@
         document.getElementById("multiple-info").classList.add("active");
         document.getElementById("info-multiple").style.display = "block";
         break;
-      case 'exerciceQrCode':
-        document.getElementById("exo-qrcode-info").classList.add("active");
-        document.getElementById("info-exercice-qrcode").style.display = "block";
-        break;
-      case 'exerciceRecoVocale':
-        document.getElementById("exo-reco-vocale-info").classList.add("active");
-        document.getElementById("info-exercice-reco-vocale").style.display = "block";
-        break;
-      case 'seriousGame':
-        document.getElementById("serious-game-info").classList.add("active");
-        document.getElementById("info-serious-game").style.display = "block";
+      case 'questRep':
+        document.getElementById("questRep-info").classList.add("active");
+        document.getElementById("info-exercice").style.display = "block";
         break;
     }
   });
