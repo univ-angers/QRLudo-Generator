@@ -234,8 +234,8 @@ function viderChamps(){
   $('#gridCheck1').prop('checked', false);
   $('#MessageMauvaisereponseQCM').val('');
   $('#MessageBonnereponseQCM').val('');
-  //$("#repContainer").empty();
-  $("#repContainer").hide();
+  $("#repContainer").empty();
+  //$("#repContainer").hide();
 
   deleteStore(`Question`);
 
