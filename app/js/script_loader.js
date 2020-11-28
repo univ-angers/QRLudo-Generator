@@ -9,6 +9,9 @@
 const Store = require('electron-store');
 const store = new Store();
 
+// Boolean qui permet de detecter si l'onglet unique est load dans le cas de l'importation d'un QR unique
+isImportationQRUnique = false;
+
 //Déclaration de l'entier renseignant le nombre de zones de donnee dans l'onglet qr unique (les zones de textes ou les fichier audio)
 nbZoneDonne = 0;
 
@@ -17,9 +20,6 @@ numZoneCourante = 0;
 
 //nombre de fichier ajouté dans l'onglet multiple
 numFich = 0;
-
-//nombre de reponse soumises à la question dans l'onglet QCM
-numReponseQCM = 0;
 
 //numero de la reponse dans QR Exercice
 numReponse = 0;
@@ -190,11 +190,22 @@ const {
   Question
 } = require(`${root}/Model/QRCodeQuestionReponse`);
 
+const { 
+  QRCodeQCM,
+  ReponseVocale  
+} = require(`${root}/Model/QRCodeQCM.js`);
+
+const { 
+  ProjetSeriousGame, 
+  QRCodeSeriousGame, 
+  QRCodeQuestion, 
+  RecVocaleQuestion 
+} = require('./Model/QRCodeSeriousGame');
+
 const {
-  ProjetQCM,
-  ReponseQCM,
-  QuestionQCM
-} = require(`${root}/Model/QRCodeQCM`);
+  QRCodeQuestionOuverte 
+}
+= require(`${root}/Model/QRCodeQuestionOuverte.js`);
 
 // Instanciate object
 let controllerMultiple = new ControllerMultiple();

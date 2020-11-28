@@ -219,7 +219,7 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: .5rem
+  margin-bottom: .5rem;
 }
 
 button {
@@ -5413,7 +5413,7 @@ button.close {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  /*display: flex;*/
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;

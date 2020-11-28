@@ -1,21 +1,23 @@
-<script src="js/script_serious_game.js"></script>
-<!-- contenu page QuesRep -->
+<!-- contenu page Serious Game -->
 <!--Panel-->
-
 <div class="col-sm-12 card">
+    <div id="btnInfo">
+        <button class="btn btn-outline-success" id="infos-serious-game"><i class="fa fa-info-circle"></i></button>
+    </div>
     <div class="text-center" id="textPresentation">
         Création de QR Code Serious Game.<br>
         Jeu à but pédagogique. <br />
         Les réponses attendues peuvent être à reconnaisance vocale, scan de QR Code, ...
     </div>
-    <div class="alert alert-success" role="alert" id="alertExportationOk" style="display:none;"> Votre projet a bien été
+    <div class="alert alert-success" role="alert" id="alertExportationOk" style="display:none"> Votre projet a bien été
         enregistré. </div>
-    <div class="alert alert-danger" role="alert" id="alertQuestionVideError" style="display:none;"> Veuillez saisir le
+    <div class="alert alert-danger" role="alert" id="alertQuestionVideError" style="display:none"> Veuillez saisir le
         texte lié à votre jeu. </div>
-    <div class="alert alert-danger" role="alert" id="alertNombreReponseVideError" style="display:none;"> Veuillez saisir
+    <div class="alert alert-danger" role="alert" id="alertNombreReponseVideError" style="display:none"> Veuillez saisir
         un nombre de réponses correct. </div>
     <div class="alert alert-danger" role="alert" id="alertQuestionExistError" style="display:none"> La question existe
         déjà. </div>
+    <div class="alert alert-danger" role="alert" id="alertChampsEmptyError" style="display:none"> Veuillez remplir tous les champs </div>
     <form id="formulaireQCM" onsubmit="return false;">
         <div class="card-body">
             <h6 class="card-title"></h6>
@@ -24,7 +26,6 @@
                     <a class="nav-link active" data-toggle="tab" href="#newProject">QR - Serious Game</a>
                 </li>
             </ul>
-
             <div class="tab-content scrollbar-success" style="height:600px; overflow-y: scroll; margin-top:15px;">
                 <div id="newProject" class="tab-pane fade in active show" role="tabpanel">
 
@@ -43,130 +44,43 @@
                             <div class="form-inline">
                                 <label class="control-label"
                                     style="color:#28a745;padding-top:10px;padding-right:27px;">Introduction : </label>
-                                <textarea rows="4" cols="60"></textarea>
+                                <textarea id="textAreaIntro" rows="4" cols="45"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" id="addAudioIntro" class="btn btn-outline-success btn-unique-xl  "
+                                    name="ajouterSon" data-toggle="modal" data-target="#listeMusic">
+                                    <i class="fa fa-music"></i>&nbsp;&nbsp;Audio
+                                </button>
+                                <button id="deleteAudioIntro" type="button" onclick=""
+                                    class="btn btn-outline-success align-self-center"><i class="fa fa-trash"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-inline" class="col-sm-6">
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:54px;">Enigme 1 : </label>
-                                <input type="text" class="form-control" id="enigme1" name="nombreReponse"
-                                    placeholder="Détails sur l'énigme 1" onkeyup="activerSave();" />
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:10px; padding-left:20px;">Type
-                                    d'énigme : </label>
-                                <button type="button" id="scanQR1" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR CODE</button>&nbsp;
-                                <button id="recVocale1" type="button" class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-microphone"></i>&nbsp;&nbsp;Reconnaissance vocale</button>&nbsp;
-                                <button id="deleteType1" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-trash"></i></button>
-                            </div>
+                        <div id="containerEnigme">
                         </div>
 
                         <div class="form-group">
-                            <div class="form-inline" class="col-sm-6">
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:51px;">Enigme 2 : </label>
-                                <input type="text" class="form-control" id="enigme2" rows="2" name="nombreReponse"
-                                    placeholder="Détail sur l'éngime 2" onkeyup="activerSave();" />
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:10px; padding-left:20px;">Type
-                                    d'énigme : </label>
-                                <button type="button" id="scanQR2" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR CODE</button>&nbsp;
-                                <button id="recVocale2" type="button" class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-microphone"></i>&nbsp;&nbsp;Reconnaissance vocale</button>&nbsp;
-                                <button id="deleteType2" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-inline" class="col-sm-6">
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:51px;">Enigme 3 : </label>
-                                <input type="text" class="form-control" id="enigme3" rows="2" name="nombreReponse"
-                                    placeholder="Détail sur l'énigme 3" onkeyup="activerSave();" />
-                                <label class="control-label"
-                                    style="color:#28a745;padding-top:10px;padding-right:10px; padding-left:20px;">Type
-                                    d'énigme : </label>
-                                <button type="button" id="scanQR3" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR CODE</button>&nbsp;
-                                <button id="recVocale3" type="button" class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-microphone"></i>&nbsp;&nbsp;Reconnaissance vocale</button>&nbsp;
-                                <button id="deleteType3" type="button"
-                                    class="btn btn-outline-success align-self-center">
-                                    <i class="fa fa-trash"></i></button>
-                            </div>
+                            <label for="ajouterEnigme" style="color:#a5b2af;">Ajouter une énigme</label>
+                            <button id="ajouterEnigme" type="button" class="btn btn-outline-success align-self-center"
+                                style="color:#a5b2af;" name="ajouterQuestion">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
                         </div>
 
                         <div class="form-group">
                             <div class="form-inline">
                                 <label class="control-label"
                                     style="color:#28a745;padding-top:10px;padding-right:100px;">Fin : </label>
-                                <textarea rows="4" cols="60"></textarea>
+                                <textarea id="textAreaFin" rows="4" cols="45"></textarea>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" id="addAudioFin" class="btn btn-outline-success btn-unique-xl  "
+                                    name="ajouterSon" data-toggle="modal" data-target="#listeMusic">
+                                    <i class="fa fa-music"></i>&nbsp;&nbsp;Audio
+                                </button>
+                                <button id="deleteAudioFin" type="button" onclick=""
+                                    class="btn btn-outline-success align-self-center"><i class="fa fa-trash"></i>
+                                </button>
                             </div>
                         </div>
-
-                        <!--<hr>
-                        <div class="alert alert-danger" role="alert" id="messageReponseSansQuestionError"
-                            style="display:none;">Vous devez d'abord créer une question.</div>
-                        <div class="alert alert-danger" role="alert" id="messageReponseVideError" style="display:none;">
-                            Veuillez ajouter le texte de votre réponse.</div>
-                        <div class="alert alert-danger" role="alert" id="messageRetourVocalVideError"
-                            style="display:none;">Veuillez ajouter le texte de votre retour vocal.</div>
-                        <div class="alert alert-danger" role="alert" id="messageReponseExistError"
-                            style="display:none;">Cette réponse existe déjà.</div>
-                        <div class="alert alert-danger" role="alert" id="messageReponseMaxError" style="display:none;">
-                            Le maximum de réponses est atteint.</div>
-
-                        <div class="form-group" id="zoneReponse">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" style="color:#28a745;padding-top:10px;">Identifiant
-                                            réponse :</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-inline">
-                                            <input type='text' class="form-control col-sm-11" id="newReponseText"
-                                                placeholder="Saisissez l'identifiant de la réponse" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div id="bonneRepCheckBox" style="margin-top:15px;"><input
-                                                id="isBonneRepCheckBox" type="checkbox" /> <label
-                                                for="isBonneRepCheckBox"><em style='color:gray'>Cochez si c'est la bonne
-                                                    réponse</em></label></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style='width: 115px;'>
-                                        <label class="control-label" style="color:#28a745;padding-top:10px;">Retour
-                                            vocal :</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-inline">
-                                            <input type='text' class="form-control col-sm-11" id="newReponseVocalText"
-                                                placeholder="Saisissez la réponse vocale" maxlength="49" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button id="addNewRep" type="button" class="btn btn-outline-success"
-                                            style="margin-left:50px;margin-bottom:15px;">Ajouter réponse</button>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </div>-->
-
                         <hr>
                         <div id="questionsDivLabelsId" class="form-group">
                         </div>
@@ -176,7 +90,11 @@
         </div>
         <div class="card-footer form-inline">
             <div class="card col-md-auto ">
-                <button type="reset" style="margin-top:10px" data-toggle="modal" class="btn btn-outline-success btn-unique-xl"
+                <button type="submit" style="margin-top:10px" class="btn btn-outline-success btn-unique-xl"
+                    id="generateSG">
+                    <i class="fa fa-cogs"></i>&nbsp;&nbsp;Générer
+                </button>
+                <button type="button" style="margin-top:10px" data-toggle="modal" class="btn btn-outline-success btn-unique-xl"
                      data-target="#confirmation">
                     <i class="fa fa-undo"></i>&nbsp;&nbsp;Réinitialiser
                 </button>
@@ -194,6 +112,45 @@
     </form>
 </div>
 <!--/.Panel-->
+
+<!-- Modal Popup Fichier audio -->
+<div class="modal fade" id="listeMusic" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter un fichier audio</h5>
+                <button type="button" class="close" id="closeModalListeMusic" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body scrollbar-success">
+                <div class="list-group" id="elementsAudio">
+                    <div class="form-group">
+
+                        <label class="col-sm-12 control-label" style="color:#28a745;padding-top:10px;">Veuillez copier
+                            et coller le
+                            lien téléchargeable du fichier audio</label>
+                        <div class="col-sm-12">
+                            <input type="text" id="musicUrl" name="musicUrl" class="form-control"
+                                onpaste="getMusicFromUrl()">
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-outline-success" id="showInfo" title="Afficher aide">
+                            <i class="fa fa-info-circle"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" id="addMusic">Valider</button>
+      </div> -->
+        </div>
+    </div>
+</div>
+<!-- Fin Modal Popup Fichier Audio -->
 
 <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -218,3 +175,7 @@
         $("#qr-zone").load("Views/QR-zone.html");
     </script>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="./js/script_serious_game.js"></script>
+<link rel="stylesheet" href="./assets/css/qrludo.css">

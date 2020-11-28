@@ -3,10 +3,12 @@
 <!--Panel-->
 
 <div class="col-sm-12 card">
+    <div id="btnInfo">
+      <button class="btn btn-outline-success" id="infos-exercice-reco-vocale"><i class="fa fa-info-circle"></i></button>
+    </div>
     <div class="text-center" id="textPresentation">
-        Création de QR Code Serious Game.<br>
-        Jeu à but pédagogique. <br />
-        Les réponses attendues peuvent être à reconnaisance vocale, scan de QR Code, ...
+        Création d'exercice à reconnaissance vocale<br>
+        Il y a deux types d'exercices : les questions ouvertes et les QCM
     </div>
     <div class="alert alert-success" role="alert" id="alertExportationOk" style="display:none;"> Votre projet a bien été
         enregistré. </div>
@@ -22,63 +24,51 @@
             <nav class="nav nav-tabs">
             <ul class="nav nav-tabs">
                     <li class="nav-item">
-                    <a class="nav-link active"  href="#onglet-QuesOuverte">Question Ouverte </a></li>  
-                     <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#onglet-RecVocal">QCM</a></li>
+                    <a class="nav-link active" id="questionOuverteOnglet" href="#onglet-QuesOuverte">Question Ouverte </a></li>  
+                    <li class="nav-item">
+                    <a class="nav-link" id="questionQCMOnglet" data-toggle="tab" href="#onglet-QCM">QCM</a></li>
             </ul>
           </nav>
           <div class="tab-content">
-                          <div class="tab-pane" id="onglet-RecVocal">
-                       <div id="newProject" class="tab-pane fade in active show" role="tabpanel">
+             <div class="tab-pane" id="onglet-QCM">
+                <div id="newProject" class="tab-pane fade in active show" role="tabpanel">
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-lg-6 form-inline">
                         <label class="control-label" style="color:#28a745;padding-right:32px;">Question :
                             </label>
                             <input type="text" class="form-control input-lg" style="width:450px;"  id="QuestionQCM" cols="10" name="nomprojet"
-                                placeholder="Quelle est Votre Question" onkeyup="activerSave('QuestionQCM');"/>
+                                placeholder="Quelle est Votre Question" />
                       </div>
 
-                      <div class="col-lg-5">
-                        <br>
+                      <div class="col-lg-5 mt-5">
                           <div class="form-group form-inline">
-                            
-                            <input type="checkbox" form="label2" id="checkboxQR" name="" class="form-control">
-                              <label id="label2" class="ml-2">Utiliser la lettre de la question comme réponse</label>
-                            </div>
+                              <input type="checkbox" form="label2" id="reponseParIdentifiant" class="form-control row">
+                              <label id="label2" class="ml-3">Utiliser l'identifiant de la question comme réponse</label>
+                          </div>
                         </div>
                                </div>
                                <br>
                               <div class="form-row">
-                                <div class="form-group col-md-1">
-                               <label></label>
-                               </div>
-                                <div class="form-group col-md-3">
-                               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bonne(s) réponse(s)</label>
-                               </div>
-                               <div class="form-group col-md-4">
-                               <label></label>
-                               </div>
-                               <div class="form-group col-md-4">
-                               <label></label>
+                                <div class="form-group col-md-10" style="text-align: right;">
+                               <label>Bonne(s) réponse(s)</label>
                                </div>
                               </div>
-                              
-                                <div class="form-row" id="divQuestion1">
-                            <div class="form-group col-md-3">
-                                  <label class="control-label">Réponse &nbsp;1 : </label>
+                              <div class="form-row" id="divQuestion1">
+                                  <div class="form-group col-md-3">
+                                      <label class="control-label">Réponse 1 :</label>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <input type="text" class="form-control col-sm-6" id="reponseinitiale" rows="2" name="nomprojet"
+                                          placeholder="Réponse" onkeyup="activerSave();" />
                                 </div>
-                         <div class="form-group col-md-2">
-                                   <input class="form-check-input" type="checkbox" name="gridRadios" id="gridCheck1" style="width:70px;" value="option" 1>
-                                      <label class="form-check-label" for="gridCheck1">
-                            </div>
-                          <div class="form-group col-md-6">
-                                 <input type="text" class="form-control col-sm-6" id="reponseinitiale" rows="2" name="nomprojet"
-                                placeholder="Réponse" onkeyup="activerSave('reponseinitiale');"/>
-                           </div>
-                            </div>
-                            <div id="repContainer">
+                                  <div class="form-group col-md-2">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridCheck1" style="width:70px;" 
+                                      value="option">
+                                        <label class="form-check-label" for="gridCheck1">
+                                  </div>
                               </div>
+                              <div id="repContainer"></div>
                               <div class="form-group col-md-6">
                                   <label style="color:#a5b2af;">Ajouter une réponse</label>
                                   <button id="ajouterQuestion" type="button"
@@ -91,15 +81,15 @@
                                 <br>
                                 <br>
                               <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Message de bonne réponse :</label>
+                                <label for="inputEmail3" class="col-sm-4 col-form-label">Message de bonne réponse :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="MessageBonnereponseQCM" placeholder="Bonne" onkeyup="activerSave('MessageBonnereponseQCM');">
+                                  <input type="text" class="form-control" id="MessageBonnereponseQCM" placeholder="Bravo !">
                                 </div>
                               </div>
                               <div class="form-group row">
-                                 <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Message de mauvaise réponse :</label>
+                                 <label for="inputEmail3" class="col-sm-4 col-form-label">Message de mauvaise réponse :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="MessageMauvaisereponseQCM" placeholder="Mauvaise" onkeyup="activerSave('MessageMauvaisereponseQCM');">
+                                  <input type="text" class="form-control" id="MessageMauvaisereponseQCM" placeholder="Dommage !">
                                 </div>
                               </div>
                             </form>
@@ -111,48 +101,52 @@
                      
                       <br>
                        <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Question :</label>
+                                <label class="col-sm-4 col-form-label">Question :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="Question" style="height: 70px;" onkeyup="activerSave('Question');">
+                                  <input type="text" class="form-control" id="Question" style="height: 70px;">
                                 </div>
                               </div>
                       <br>
                        <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Bonne réponse :</label>
+                                <label class="col-sm-4 col-form-label">Bonne réponse :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="Bonnereponse" onkeyup="activerSave('Bonnereponse');">
+                                  <input type="text" class="form-control" id="Bonnereponse">
                                 </div>
                               </div>
                       <br>
                          <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Message de bonne réponse :</label>
+                                <label class="col-sm-4 col-form-label">Message de bonne réponse :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="MessageBonnereponse" placeholder="Bonne" onkeyup="activerSave('MessageBonnereponse');">
+                                  <input type="text" class="form-control" id="MessageBonnereponse" placeholder="Bravo !">
                                 </div>
                               </div>
                               <div class="form-group row">
-                                 <label for="inputEmail3" class="col-sm-4 col-form-label" style="color:#28a745;padding-right:32px;">Message de mauvaise réponse :</label>
+                                 <label class="col-sm-4 col-form-label">Message de mauvaise réponse :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="MessageMauvaisereponse" placeholder="Mauvaise" onkeyup="activerSave('MessageMauvaisereponse');">
+                                  <input type="text" class="form-control" id="MessageMauvaisereponse" placeholder="Dommage !">
                                 </div>
                               </div> 
                     </div>
                   </div>
                 </div>
-              </form>
-           <div class="card-footer form-inline">
-        <!--<label class="btn btn-outline-success">-->
-        <!--Parcourir&hellip; <input type="file" style="display: none;"> -->
-        <!--</label>-->
-        <div class="card col-md-auto">
-          <button style="margin-top:10px" type="reset" class="btn btn-outline-success btn-unique-xl" data-toggle="modal" id="emptyZones"   data-target="#confirmation"><i class="fa fa-undo"></i>&nbsp;&nbsp;Réinitialiser</button>
-        </div>
-        <div class="card col-md-auto">
-          <button type="button" class="btn btn-outline-success btn-unique-xl " id="saveQRCode" disabled><i class="fa fa-download"></i>&nbsp;&nbsp;Exporter</button>
-          <button  style="margin-top:10px" type="submit" class="btn btn-outline-success btn-unique-xl" id="preview" disabled><i class="fa fa-cogs" ></i>&nbsp;&nbsp;Générer</button>
-        </div>
-    </div>
+     </form>
+     <div class="card-footer form-inline">
+          <div class="card col-md-auto">
+            <button style="margin-top:10px" type="reset" class="btn btn-outline-success btn-unique-xl" data-toggle="modal" id="emptyZones" data-target="#confirmation">
+              <i class="fa fa-undo"></i>&nbsp;&nbsp;Réinitialiser
+            </button>
+          </div>
+          <div class="card col-md-auto">
+            <button type="button" class="btn btn-outline-success btn-unique-xl " id="saveQRCode" disabled>
+              <i class="fa fa-download"></i>&nbsp;&nbsp;Exporter
+            </button>
+            <button type="submit" style="margin-top:10px" class="btn btn-outline-success " id="preview" onclick="genererJson()">
+              <i class="fa fa-cogs" ></i>&nbsp;&nbsp;Générer
+            </button>
+          </div>
+      </div>
 </div>
+  
 <!--/.Panel-->
 <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

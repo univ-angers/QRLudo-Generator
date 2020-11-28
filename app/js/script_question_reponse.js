@@ -607,7 +607,7 @@ function deleteStore(del){
 }
 
 //pour ouvrir la page info.html quand on clique sur le bouton info du haut
-$("#infos-questRep").click(function () {
-  require('electron').remote.getGlobal('sharedObject').someProperty = 'questRep'
+$("#infos-exercice-qrcode").click(function () {
+  require('electron').remote.getGlobal('sharedObject').someProperty = 'exerciceQrCode'
   $("#charger-page").load(path.join(__dirname, "Views/info.html"));
 });
