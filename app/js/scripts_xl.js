@@ -18,8 +18,6 @@
            initMessages();
 
     let inputArray = $('input, textarea');
-    //if (validateForm(inputArray)) { // all fields are filled
-      // get all required attributes for qrcode
       let qrColor = $('#qrColor').val();
       let qrName = $('#qrName').val();
       let qrData = [];
@@ -57,7 +55,6 @@
              let div = $('#qrView')[0];
 
       $('#annuler').attr('disabled', false);
-    // }
   });
   //Fin Preview
 
